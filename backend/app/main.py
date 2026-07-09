@@ -56,9 +56,7 @@ def chat(request: ChatRequest):
     try:
 
         completion = client.chat.completions.create(
-
             model="deepseek/deepseek-chat-v3-0324",
-
             messages=[
                 {
                     "role": "system",
@@ -69,14 +67,32 @@ def chat(request: ChatRequest):
                     "content": request.message
                 }
             ]
-
         )
 
+        # Print full response to logs
+        print(completion.model_dump())
+
+        if not completion.choices:
+            return {
+                "reply": "⚠️ No response from AI.",
+                "debug": completion.model_dump()
+            }
+
+        message = completion.choices[0].message
+
+        if message is None:
+            return {
+                "reply": "⚠️ AI returned an empty message.",
+                "debug": completion.model_dump()
+            }
+
         return {
-            "reply": completion.choices[0].message.content
+            "reply": message.content
         }
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
 
         return {
             "reply": "⚠️ Sorry, I couldn't process your request.",
