@@ -224,27 +224,16 @@ async function sendMessage() {
     try {
 
         const response = await fetch(
-
-            ""https://chatbot-41tu.onrender.com/chat"/",
-
+            "https://chatbot-41tu.onrender.com/chat",
             {
-
                 method: "POST",
-
                 headers: {
-
                     "Content-Type": "application/json"
-
                 },
-
                 body: JSON.stringify({
-
                     message: text
-
                 })
-
             }
-
         );
 
         hideTyping();
