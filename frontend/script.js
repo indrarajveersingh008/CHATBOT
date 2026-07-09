@@ -225,7 +225,7 @@ async function sendMessage() {
 
         const response = await fetch(
 
-            "https://chatbot-41tu.onrender.com/",
+            ""https://chatbot-41tu.onrender.com/chat"/",
 
             {
 
