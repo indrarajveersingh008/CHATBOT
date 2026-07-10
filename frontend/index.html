@@ -8,7 +8,11 @@
 
     <title>AI Nexus</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -21,67 +25,97 @@
 
 <body>
 
-    <div class="container">
+    <div class="app">
 
-        <header>
+        <!-- Sidebar -->
+        <aside class="sidebar">
 
             <div class="logo">
+                <div class="logo-circle">🤖</div>
 
-                <div class="logo-circle">
-                    🤖
-                </div>
+                <h2>AI Nexus</h2>
 
-                <div>
+                <p>Powered by AI</p>
+            </div>
 
-                    <h1>AI Nexus</h1>
+            <nav>
 
-                    <p>Powered by Google Gemini</p>
+                <button class="menu-btn active">
+                    💬 Chat
+                </button>
 
-                </div>
+                <button class="menu-btn">
+                    🧠 Memory
+                </button>
+
+                <button class="menu-btn">
+                    📂 Files
+                </button>
+
+                <button class="menu-btn">
+                    🌐 Search
+                </button>
+
+                <button class="menu-btn">
+                    ⚙️ Settings
+                </button>
+
+            </nav>
+
+            <div class="profile">
+
+                👤 Rajveer
 
             </div>
 
-            <button id="clearBtn">
-                + New Chat
-            </button>
+        </aside>
 
-        </header>
+        <!-- Main Chat -->
 
-        <main id="chat-box">
+        <main class="main">
 
-            <!-- Messages appear here -->
+            <header class="topbar">
+
+                <div>
+
+                    <h1>AI Nexus 2.0</h1>
+
+                    <p>Your Intelligent AI Assistant</p>
+
+                </div>
+
+                <div class="voice-orb"></div>
+
+            </header>
+
+            <section id="chat-box" class="chat-box"></section>
+
+            <footer class="input-area">
+
+                <button id="voiceBtn">
+                    🎤
+                </button>
+
+                <input id="message" type="text" placeholder="Ask AI Nexus anything..." autocomplete="off">
+
+                <button id="sendBtn">
+                    ➤
+                </button>
+
+            </footer>
 
         </main>
 
-        <footer class="input-area">
-
-            <input id="message" type="text" placeholder="Ask me anything..." autocomplete="off">
-
-            <button id="sendBtn">
-
-                ➤
-
-            </button>
-
-        </footer>
-
     </div>
 
-    <!-- Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    <!-- Highlight.js -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
 
-    <!-- Your Script -->
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
+    <script src="js/app.js"></script>
 </body>
 
 </html>
