@@ -310,7 +310,35 @@ async function sendMessage() {
         alert("Speech Recognition is not supported in this browser.");
 
     }
-    showTyping();
+    function showTyping() {
+
+        const typing = document.createElement("div");
+
+        typing.className = "message bot";
+
+        typing.id = "typing";
+
+        typing.innerHTML = `
+
+        <div class="avatar">🤖</div>
+
+        <div class="bubble typing-bubble">
+
+            <div class="dot"></div>
+
+            <div class="dot"></div>
+
+            <div class="dot"></div>
+
+        </div>
+
+    `;
+
+        chatBox.appendChild(typing);
+
+        scrollBottom();
+
+    }
     sendBtn.disabled = true;
     sendBtn.innerHTML = "⏳";
 
@@ -420,58 +448,58 @@ clearBtn.addEventListener("click", function () {
 
     addMessage(
 
-        ""👋 Welcome to AI Nexus 2.0.< br > <br>I'm your intelligent AI assistant.<br><br>Ask me anything about Programming, AI, SQL, Python, Java, or General Knowledge."",
+        "👋 Welcome to AI Nexus 2.0.< br > <br>I'm your intelligent AI assistant.<br><br>Ask me anything about Programming, AI, SQL, Python, Java, or General Knowledge.",
+
+        "bot",
+
+        false
+
+    );
+
+    messageInput.focus();
+
+});
+
+/* ---------- Restore History ---------- */
+
+window.addEventListener("load", function () {
+
+    chatBox.innerHTML = "";
+
+    if (chatHistory.length > 0) {
+
+        chatHistory.forEach((msg) => {
+
+            addMessage(
+
+                msg.text,
+
+                msg.sender,
+
+                false
+
+            );
+
+        });
+
+    }
+
+    else {
+
+        addMessage(
+
+            "👋 Hello Rajveer! I'm AI Nexus. How can I help you today?",
 
             "bot",
 
             false
 
-            );
-
-            messageInput.focus();
-
-});
-
-            /* ---------- Restore History ---------- */
-
-            window.addEventListener("load", function () {
-
-                chatBox.innerHTML = "";
-
-    if (chatHistory.length > 0) {
-
-                chatHistory.forEach((msg) => {
-
-                    addMessage(
-
-                        msg.text,
-
-                        msg.sender,
-
-                        false
-
-                    );
-
-                });
+        );
 
     }
 
-            else {
-
-                addMessage(
-
-                    "👋 Hello Rajveer! I'm AI Nexus. How can I help you today?",
-
-                    "bot",
-
-                    false
-
-                );
-
-    }
-
-            messageInput.focus();
+    messageInput.focus();
 
 });
 
-            messageInput.focus();
+messageInput.focus();
