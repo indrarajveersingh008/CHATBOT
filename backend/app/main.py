@@ -54,7 +54,6 @@ def home():
 def chat(request: ChatRequest):
 
     try:
-
         completion = client.chat.completions.create(
             model="deepseek/deepseek-chat-v3-0324",
             messages=[
@@ -66,7 +65,9 @@ def chat(request: ChatRequest):
                     "role": "user",
                     "content": request.message
                 }
-            ]
+            ],
+            max_tokens=1024,
+            temperature=0.7
         )
 
         # Print full response to logs
