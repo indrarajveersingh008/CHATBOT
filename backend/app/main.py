@@ -54,21 +54,23 @@ def home():
 def chat(request: ChatRequest):
 
     try:
-        completion = client.chat.completions.create(
-            model="deepseek/deepseek-chat-v3-0324",
-            messages=[
-                {
-                    "role": "system",
-                    "content": SYSTEM_PROMPT
-                },
-                {
-                    "role": "user",
-                    "content": request.message
-                }
-            ],
-            max_tokens=1024,
-            temperature=0.7
-        )
+
+      completion = client.chat.completions.create(
+    model="deepseek/deepseek-chat-v3-0324",
+    messages=[
+        {
+            "role": "system",
+            "content": SYSTEM_PROMPT
+        },
+        {
+            "role": "user",
+            "content": request.message
+        }
+    ],
+    max_tokens=1024,
+    temperature=0.7
+)
+        
 
         # Print full response to logs
         print(completion.model_dump())
