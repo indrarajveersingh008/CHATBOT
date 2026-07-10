@@ -420,58 +420,58 @@ clearBtn.addEventListener("click", function () {
 
     addMessage(
 
-        "👋 Hello Rajveer! I'm AI Nexus. How can I help you today?",
-
-        "bot",
-
-        false
-
-    );
-
-    messageInput.focus();
-
-});
-
-/* ---------- Restore History ---------- */
-
-window.addEventListener("load", function () {
-
-    chatBox.innerHTML = "";
-
-    if (chatHistory.length > 0) {
-
-        chatHistory.forEach((msg) => {
-
-            addMessage(
-
-                msg.text,
-
-                msg.sender,
-
-                false
-
-            );
-
-        });
-
-    }
-
-    else {
-
-        addMessage(
-
-            "👋 Hello Rajveer! I'm AI Nexus. How can I help you today?",
+        ""👋 Welcome to AI Nexus 2.0.< br > <br>I'm your intelligent AI assistant.<br><br>Ask me anything about Programming, AI, SQL, Python, Java, or General Knowledge."",
 
             "bot",
 
             false
 
-        );
+            );
 
-    }
-
-    messageInput.focus();
+            messageInput.focus();
 
 });
 
-messageInput.focus();
+            /* ---------- Restore History ---------- */
+
+            window.addEventListener("load", function () {
+
+                chatBox.innerHTML = "";
+
+    if (chatHistory.length > 0) {
+
+                chatHistory.forEach((msg) => {
+
+                    addMessage(
+
+                        msg.text,
+
+                        msg.sender,
+
+                        false
+
+                    );
+
+                });
+
+    }
+
+            else {
+
+                addMessage(
+
+                    "👋 Hello Rajveer! I'm AI Nexus. How can I help you today?",
+
+                    "bot",
+
+                    false
+
+                );
+
+    }
+
+            messageInput.focus();
+
+});
+
+            messageInput.focus();
