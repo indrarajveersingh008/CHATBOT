@@ -380,15 +380,7 @@ async function sendMessage() {
 
         addMessage(data.reply, "bot");
 
-        const speech = new SpeechSynthesisUtterance(data.reply);
 
-        speech.lang = "en-US";
-
-        speech.rate = 1;
-
-        speech.pitch = 1;
-
-        speechSynthesis.speak(speech);
     }
 
     catch (error) {
