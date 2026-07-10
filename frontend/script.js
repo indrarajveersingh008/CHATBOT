@@ -3,7 +3,7 @@
    SCRIPT.JS
 ====================================== */
 console.log("AI Nexus script loaded");
-
+const voiceBtn = document.getElementById("voiceBtn");
 const chatBox = document.getElementById("chat-box");
 const messageInput = document.getElementById("message");
 const sendBtn = document.getElementById("sendBtn");
@@ -216,7 +216,100 @@ async function sendMessage() {
     messageInput.value = "";
 
     messageInput.focus();
+    /* ==========================
+   VOICE ASSISTANT
+========================== */
+    /* ==========================
+    AI NEXUS VOICE MODE
+ ========================== */
 
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+
+        const recognition = new SpeechRecognition();
+
+        recognition.lang = "en-US";
+        recognition.continuous = true;
+        recognition.interimResults = false;
+
+        let waitingForCommand = false;
+
+        voiceBtn.addEventListener("click", () => {
+
+            recognition.start();
+
+            voiceBtn.innerHTML = "🎙️";
+
+        });
+
+        recognition.onresult = (event) => {
+
+            const transcript =
+                event.results[event.results.length - 1][0].transcript
+                    .toLowerCase()
+                    .trim();
+
+            console.log("Heard:", transcript);
+
+            if (
+                !waitingForCommand &&
+                (
+                    transcript.includes("hi nexus") ||
+                    transcript.includes("hey nexus")
+                )
+            ) {
+
+                waitingForCommand = true;
+
+                const speech =
+                    new SpeechSynthesisUtterance(
+                        "Hello Rajveer. How can I help you?"
+                    );
+
+                speechSynthesis.speak(speech);
+
+                voiceBtn.innerHTML = "🟢";
+
+                return;
+            }
+
+            if (waitingForCommand) {
+
+                messageInput.value = transcript;
+
+                sendMessage();
+
+                waitingForCommand = false;
+
+                voiceBtn.innerHTML = "🎤";
+
+            }
+
+        };
+
+        recognition.onerror = (event) => {
+
+            console.error(event.error);
+
+            voiceBtn.innerHTML = "🎤";
+
+        };
+
+        recognition.onend = () => {
+
+            voiceBtn.innerHTML = "🎤";
+
+        };
+
+    }
+    else {
+
+        alert("Speech Recognition is not supported in this browser.");
+
+    }
     showTyping();
     sendBtn.disabled = true;
     sendBtn.innerHTML = "⏳";
@@ -258,6 +351,16 @@ async function sendMessage() {
         }
 
         addMessage(data.reply, "bot");
+
+        const speech = new SpeechSynthesisUtterance(data.reply);
+
+        speech.lang = "en-US";
+
+        speech.rate = 1;
+
+        speech.pitch = 1;
+
+        speechSynthesis.speak(speech);
     }
 
     catch (error) {
